@@ -7,18 +7,23 @@
 
 <h1>Cadastrado Produto</h1>
 {{-- errors => Quarda os Erros das Validações --}}
-@if ($errors->any())
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li> {{ $error }} </li>
-        @endforeach
-    </ul>
-@endif
+
+@include('includes.alert')
 <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
     @csrf
-    <input type="text" name="name" id="name" placeholder="name:">
-    <input type="text" name="description" placeholder="Descricão">
-    <input type="file" name="photo" >
-    <button type="submit">Enviar</button>
+    <div class="form-group">
+        <input type="text" class="form-control" name="name" id="name" placeholder="name:" value="{{ old('name') }}">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="price" placeholder="Prço:" value="{{ old('price') }}">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="description" placeholder="Descricão:" value="{{ old('description') }}">
+    </div>
+
+    <div class="form-group">
+        <input type="file" class="form-control" name="photo" >
+    </div>
+    <button type="submit" class="btn btn-success">Enviar</button>
 </form>
 @endsection
